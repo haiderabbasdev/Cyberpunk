@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./src/style.css">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+  <link rel="stylesheet" href="./src/assets/helvetica-now-display/stylesheet.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+  <div class="main w-full font-[Helvetica Now Display]">
+    <nav class="w-full fixed top-0 left-0 z-50">
+      <!-- Top bar -->
+      <div class="px-6 md:px-10 py-3 flex justify-between items-center">
+        <img class="w-[130px] md:w-[160px] mix-blend-lighten filter saturate-150 contrast-125" src="https://preview.redd.it/3d-rendered-the-cyberpunk-logo-using-blender-v0-khopj82wqee91.png?width=1080&crop=smart&auto=webp&s=0e62e74ba8b5ef6191228e855079491cfa56f57b" alt="cyberpunk-img">
+
+        <!-- Desktop links -->
+        <div class="hidden md:flex gap-10 items-center">
+          <a href="#" class="tracking-tight text-white text-lg font-semibold hover:text-blue-400 hover:text-shadow-[0_0_20px_#60A5FA] transition-all">Community</a>
+          <a href="#" class="tracking-tight text-white text-lg font-semibold hover:text-blue-400 hover:text-shadow-[0_0_20px_#60A5FA] transition-all">Shop</a>
+          <a href="#" class="tracking-tight text-white text-lg font-semibold hover:text-blue-400 hover:text-shadow-[0_0_20px_#60A5FA] transition-all">News</a>
+          <a href="#" class="tracking-tight text-white text-lg font-semibold hover:text-blue-400 hover:text-shadow-[0_0_20px_#60A5FA] transition-all">Support</a>
+          <a href="#" class="tracking-tight text-white text-lg font-semibold hover:text-blue-400 hover:text-shadow-[0_0_20px_#60A5FA] transition-all">Games</a>
+        </div>
+
+        <!-- Hamburger button (mobile only) -->
+        <button id="menu-btn" class="md:hidden text-white text-3xl focus:outline-none transition-all" aria-label="Toggle menu">
+          <i id="menu-icon" class="ri-menu-line"></i>
+        </button>
+      </div>
+
+      <!-- Mobile dropdown menu -->
+      <div id="mobile-menu" class="hidden md:hidden flex-col gap-4 px-6 pb-6 bg-black/80 backdrop-blur-md border-t border-white/10">
+        <a href="#" class="tracking-tight text-white text-lg font-semibold hover:text-blue-400 hover:text-shadow-[0_0_20px_#60A5FA] transition-all py-1">Community</a>
+        <a href="#" class="tracking-tight text-white text-lg font-semibold hover:text-blue-400 hover:text-shadow-[0_0_20px_#60A5FA] transition-all py-1">Shop</a>
+        <a href="#" class="tracking-tight text-white text-lg font-semibold hover:text-blue-400 hover:text-shadow-[0_0_20px_#60A5FA] transition-all py-1">News</a>
+        <a href="#" class="tracking-tight text-white text-lg font-semibold hover:text-blue-400 hover:text-shadow-[0_0_20px_#60A5FA] transition-all py-1">Support</a>
+        <a href="#" class="tracking-tight text-white text-lg font-semibold hover:text-blue-400 hover:text-shadow-[0_0_20px_#60A5FA] transition-all py-1">Games</a>
+      </div>
+    </nav>
+
+    <script>
+      const menuBtn = document.getElementById('menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const menuIcon = document.getElementById('menu-icon');
+      menuBtn.addEventListener('click', () => {
+        const isOpen = !mobileMenu.classList.contains('hidden');
+        mobileMenu.classList.toggle('hidden', isOpen);
+        mobileMenu.classList.toggle('flex', !isOpen);
+        menuIcon.className = isOpen ? 'ri-menu-line' : 'ri-close-line';
+      });
+    </script>
+    <div class="w-full h-screen overflow-hidden relative">
+      <!-- mix blend mode lighten -->
+      <img class="absolute w-full md:w-3/4 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 mix-blend-lighten filter saturate-150 contrast-125" src="https://preview.redd.it/3d-rendered-the-cyberpunk-logo-using-blender-v0-khopj82wqee91.png?width=1080&crop=smart&auto=webp&s=0e62e74ba8b5ef6191228e855079491cfa56f57b" alt="cyberpunk-img">
+      <div class="w-[18rem] h-[18rem] md:w-[38rem] md:h-[38rem] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[-1] rounded-full bg-blue-800 blur-[60px] md:blur-[90px]"></div>
+      <canvas id="canvas"></canvas>
+    </div>
+    <div class="w-full h-screen relative bg-[#000]">
+      <!-- <div class="w-full h-96 absolute top-0 left-0 bg-gradient-to-b from-black to-[#888]"></div> -->
+    </div>
+  </div>
+  <script type="module" src="./src/main.js"></script>
+</body>
+
+</html>
