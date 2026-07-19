@@ -9,14 +9,20 @@ import { RGBShiftShader } from 'three/addons/shaders/RGBShiftShader.js';
 import gsap from 'gsap';
 import LocomotiveScroll from 'locomotive-scroll';
 
-const locomotiveScroll = new LocomotiveScroll();
+const locomotiveScroll = new LocomotiveScroll({
+    lenisOptions: {
+        lerp: window.innerWidth < 768 ? 0.05 : 0.1,
+        wheelMultiplier: window.innerWidth < 768 ? 0.5 : 1,
+        touchMultiplier: window.innerWidth < 768 ? 0.5 : 1,
+    }
+});
 // scene
 const scene = new THREE.Scene();
 
 // camera
 function getCameraSettings() {
     const w = window.innerWidth;
-    if (w < 768) return { fov: 65, z: 5.5 };       // mobile
+    if (w < 768) return { fov: 65, z: 4.5 };       // mobile
     if (w < 1024) return { fov: 50, z: 4.5 };      // tablet
     return { fov: 40, z: 3.5 };                     // desktop
 }
@@ -90,8 +96,9 @@ loader.load(
 
 function handlePointerMove(x, y) {
     if (model) {
-        const rotationX = (x / window.innerWidth - .5) * (Math.PI * .5);
-        const rotationY = (y / window.innerHeight - .5) * (Math.PI * .5);
+        const sensitivity = window.innerWidth < 768 ? Math.PI * 1.5 : Math.PI * .5;
+        const rotationX = (x / window.innerWidth - .5) * sensitivity;
+        const rotationY = (y / window.innerHeight - .5) * sensitivity;
         gsap.to(model.rotation, {
             y: rotationX,
             x: rotationY,
